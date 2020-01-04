@@ -8,7 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## ToDo
 
-* useSelector (read global state)
-* useDispatch (dispatch action)
+* devtools
+* lib/redux.test.js
+* redux-thunk
 * useState (local state outside redux)
 * routing (sync between history and redux)

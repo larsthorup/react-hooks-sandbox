@@ -1,14 +1,15 @@
 import React from 'react';
+
+import { AuthStatus } from './AuthStatus';
+
 import './App.css';
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Currently logged in as Unknown
+        <AuthStatus />
       </header>
     </div>
   );
 }
-
-export default App;

@@ -1,0 +1,10 @@
+import * as R from 'ramda';
+import { createSlice } from '../lib/redux';
+
+export const auth = createSlice({
+  initialState: {user: null},
+  reducers: {
+    signin: (state, { payload: { user } }) => R.assoc('user', user, state),
+    signout: state => R.assoc('user', null, state)
+  }
+});
