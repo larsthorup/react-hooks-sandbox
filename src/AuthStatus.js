@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { sagas } from './saga';
 import { slices } from './state';
 
-const { auth: { actions: { signin, signout } } } = slices;
+const { auth: { signingIn } } = sagas;
+const { auth: { actions: { signout } } } = slices;
 
 function LoggedIn({ user }) {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ function NotLoggedIn() {
   const dispatch = useDispatch();
   const onClick = (e) => {
     e.preventDefault();
-    dispatch(signin({user: {name: 'Dr. Anonymous'}}));
+    dispatch(signingIn());
   };
   return (
     <p>Please <button onClick={onClick}>Login</button></p>
