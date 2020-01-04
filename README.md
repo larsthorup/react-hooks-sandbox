@@ -8,8 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## ToDo
 
-* devtools
-* lib/redux.test.js
-* redux-thunk
+* async signin
+* auth flow test
 * useState (local state outside redux)
 * routing (sync between history and redux)
+* lib/redux.test.js
