@@ -1,9 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { sagas } from './saga';
-import { slices } from './state';
+import { slices } from '../state';
 
-const { auth: { signingIn } } = sagas;
 const { auth: { actions: { signout } } } = slices;
 
 function LoggedIn({ user }) {
@@ -13,18 +11,13 @@ function LoggedIn({ user }) {
     dispatch(signout());
   };
   return (
-    <p>{user.name} - <button onClick={onClick}>Logout</button></p>
+    <p>{user.name}<button onClick={onClick}>Logout</button></p>
   )
 }
 
 function NotLoggedIn() {
-  const dispatch = useDispatch();
-  const onClick = (e) => {
-    e.preventDefault();
-    dispatch(signingIn());
-  };
   return (
-    <p>Please <button onClick={onClick}>Login</button></p>
+    <p>Please Login</p>
   );
 }
 

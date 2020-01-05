@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 
 import { root } from './root';
 
-import './index.css';
+import './view/index.css';
 
 ReactDOM.render(root, document.getElementById('root'));
 
