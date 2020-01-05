@@ -13,6 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [useSelector and useDispatch](src/view/Home.js)
 * [useReducer for local state](src/view/LoginForm.js)
 * [redux-history to sync history with state](src/lib/redux-history.js)
+  * [useRoutes](src/view/App.js)
 
 ## ToDo
 

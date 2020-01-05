@@ -2,35 +2,24 @@ import { createBrowserHistory } from 'history';
 import queryString from 'query-string';
 import * as R from 'ramda';
 
+import { createActionCreator, stringify } from './redux-history-util';
+
 const history = createBrowserHistory();
 
-// Query string utilities
-function stringify (location) {
-  return {
-    hash: queryString.stringify(location.hash),
-    pathname: location.pathname,
-    search: queryString.stringify(location.search)
-  };
-}
-
 // Actions and reducers
-function createActionCreator (type) {
-  const actionCreator = payload => ({ payload, type });
-  actionCreator.type = type;
-  actionCreator.toString = () => type;
-  actionCreator.displayName = type;
-  return actionCreator;
-}
+
 const actions = {
   historyChange: createActionCreator('historyChange'),
   historyPush: createActionCreator('historyPush'),
   historyReplace: createActionCreator('historyReplace')
 };
+
 const initialState = {
   hash: {},
   pathname: '/',
   search: {}
 };
+
 const reducers = {
   historyChange: (state, {payload: {location: {hash, pathname, search}}}) => {
     const location = {
@@ -45,16 +34,19 @@ const reducers = {
     }
   },
 };
+
 const reducer = (state, action) => {
   const reducerForAction = reducers[action.type] || R.identity;
   return reducerForAction(state || initialState, action);
 };
 
 // Middleware
+
 const handlers = {
   historyPush: (state, { payload: location }) => R.equals(state, location) || history.push(stringify(location)),
   historyReplace: (state, { payload: location }) => R.equals(state, location) || history.replace(stringify(location))
 };
+
 const middleware = slice => store => next => action => {
   const { [slice]: state } = store.getState();
   const defaultHandler = (_, action) => next(action);
@@ -63,9 +55,9 @@ const middleware = slice => store => next => action => {
 };
 
 // Listener
+
 function listen (store) {
   const unlisten = history.listen((location, action) => {
-    console.log(location, action);
     store.dispatch(actions.historyChange({ location }));
   });
   store.dispatch(actions.historyChange({ location: history.location })); // Note: initial location

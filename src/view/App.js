@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useRoutes } from '../lib/react-redux-history';
 
 import { Home } from './Home';
 import { LoginForm } from './LoginForm';
@@ -14,9 +15,7 @@ const routes = {
 };
 
 export function App() {
-  // ToDo: ReduxHistory.useRoutes
-  const pathname = useSelector(state => state.location.pathname);
-  const routeResult = routes[pathname];
+  const routeResult = useRoutes(routes, 'location');
   return (
     <div className="App">
       <header className="App-header">
