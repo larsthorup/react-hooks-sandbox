@@ -1,18 +1,20 @@
 # react-hooks-sandbox
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
     npm start
     npm test
     npm run build
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## Noteworthy features
 
-* [Simplified Redux toolkit without Immer](src/lib/redux.js)
-* [useSelector and useDispatch](src/view/AuthStatus.js)
+* [Simplified Redux toolkit without Immer](src/lib/redux-slice.js)
+* [useSelector and useDispatch](src/view/Home.js)
 * [useReducer for local state](src/view/LoginForm.js)
-* ToDo: routing (sync between history and redux)
+* [redux-history to sync history with state](src/lib/redux-history.js)
 
 ## ToDo
 
 * lib/redux.test.js
+* Backend routing to support deep links

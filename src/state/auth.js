@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { createSlice } from '../lib/redux';
+import { createSlice } from '../lib/redux-slice';
 
 export const auth = createSlice({
   initialState: {user: null},

@@ -1,5 +1,2 @@
-import { auth } from './auth';
-
-export const slices = {
-  auth
-};
+export * from './auth';
+export * from './location';

@@ -4,42 +4,43 @@ import { fireEvent, render, wait } from '@testing-library/react';
 import { root } from '../root';
 
 test('auth flow', async () => {
-  let loggedOutStatus;
-  let loggedInStatus;
-  let logoutButton;
+  const getLoggedOutStatus = () => getByText('Please');
+  const getLoggedInStatus = () => getByText('Lars');
+  const getLogoutButton = () => getByText('Logout');
+  const getLoginButton = () => getByText('Login');
+  const getSigninButton = () => getByText('Sign in');
+  const getProfileButton = () => getByText('Profile');
 
   // When: rendered
   const { getByPlaceholderText, getByText } = render(root);
 
   // Then: is logged out
-  const getLoggedOutStatus = () => getByText('Please Login');
-  const getLogoutButton = () => getByText('Logout');
-  loggedOutStatus = getLoggedOutStatus();
-  expect(loggedOutStatus).toBeInTheDocument();
+  expect(getLoggedOutStatus()).toBeInTheDocument();
+
+  // When: navigate to sign in
+  fireEvent.click(getSigninButton());
 
   // When: login
   const usernameInput = getByPlaceholderText('User name');
   const passwordInput = getByPlaceholderText('Password');
-  const loginButton = getByText('Login');
   fireEvent.change(usernameInput, { target: { value: 'Lars' } });
   fireEvent.change(passwordInput, { target: { value: 'whatever' } });
-  fireEvent.click(loginButton);
+  fireEvent.click(getLoginButton());
 
   // Then: is logged in
-  await wait(getLogoutButton);
-  logoutButton = getLogoutButton();
-  loggedInStatus = getByText('Lars');
-  expect(loggedOutStatus).not.toBeInTheDocument();
-  expect(loggedInStatus).toBeInTheDocument();
-  expect(logoutButton).toBeInTheDocument();
+  await wait(getProfileButton);
+  expect(getProfileButton()).toBeInTheDocument();
+
+  // When: navigate to profile
+  fireEvent.click(getProfileButton());
+
+  // Then: is on profile page
+  expect(getLoggedInStatus()).toBeInTheDocument();
+  expect(getLogoutButton()).toBeInTheDocument();
 
   // When: logout
-  fireEvent.click(logoutButton);
+  fireEvent.click(getLogoutButton());
 
   // Then: logged out
-  // await wait(getLoginButton); // Note: logout is synchronous, so no reason to wait
-  loggedOutStatus = getLoggedOutStatus();
-  expect(loggedOutStatus).toBeInTheDocument();
-  expect(loggedInStatus).not.toBeInTheDocument();
-  expect(logoutButton).not.toBeInTheDocument();
+  expect(getLoggedOutStatus()).toBeInTheDocument();
 });
