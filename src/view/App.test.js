@@ -4,15 +4,17 @@ import { fireEvent, render, wait } from '@testing-library/react';
 import { root } from '../root';
 
 test('auth flow', async () => {
+
+  // When: rendered
+  const { getByPlaceholderText, getByText } = render(root);
+
+  // page model
   const getLoggedOutStatus = () => getByText('Please');
   const getLoggedInStatus = () => getByText('Lars');
   const getLogoutButton = () => getByText('Logout');
   const getLoginButton = () => getByText('Login');
   const getSigninButton = () => getByText('Sign in');
   const getProfileButton = () => getByText('Profile');
-
-  // When: rendered
-  const { getByPlaceholderText, getByText } = render(root);
 
   // Then: is logged out
   expect(getLoggedOutStatus()).toBeInTheDocument();

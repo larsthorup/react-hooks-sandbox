@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "coveralls": "^3.0.9",
     "history": "^4.10.1",
     "query-string": "^6.9.0",
     "ramda": "^0.26.1",
@@ -19,8 +20,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:watch": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --coverage",
+    "eject": "react-scripts eject",
+    "coveralls": "coveralls < coverage/lcov.info",
+    "travis": "npm test && npm run coveralls"
   },
   "eslintConfig": {
     "extends": "react-app"
