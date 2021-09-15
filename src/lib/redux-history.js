@@ -21,7 +21,7 @@ const initialState = {
 };
 
 const reducers = {
-  historyChange: (state, {payload: {location: {hash, pathname, search}}}) => {
+  historyChange: (state, { payload: { location: { hash, pathname, search } } }) => {
     const location = {
       hash: queryString.parse(hash),
       pathname,
@@ -56,15 +56,15 @@ const middleware = slice => store => next => action => {
 
 // Listener
 
-function listen (store) {
-  const unlisten = history.listen((location, action) => {
+function listen(store) {
+  const unlisten = history.listen(({ location }) => {
     store.dispatch(actions.historyChange({ location }));
   });
   store.dispatch(actions.historyChange({ location: history.location })); // Note: initial location
   return { unlisten };
 }
 
-export function close ({ unlisten }) {
+export function close({ unlisten }) {
   unlisten();
 }
 
