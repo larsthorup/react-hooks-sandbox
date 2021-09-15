@@ -1,5 +1,7 @@
 # react-hooks-sandbox
 
+[![Build Status](https://travis-ci.org/larsthorup/react-hooks-sandbox.png)](https://travis-ci.org/larsthorup/react-hooks-sandbox) [![Coverage Status](https://coveralls.io/repos/larsthorup/react-hooks-sandbox/badge.png?branch=master)](https://coveralls.io/r/larsthorup/react-hooks-sandbox?branch=master) [![Dependency Status](https://david-dm.org/larsthorup/react-hooks-sandbox.png)](https://david-dm.org/larsthorup/react-hooks-sandbox#info=dependencies) [![devDependency Status](https://david-dm.org/larsthorup/react-hooks-sandbox/dev-status.png)](https://david-dm.org/larsthorup/react-hooks-sandbox#info=devDependencies)
+
 
     npm start
     npm test

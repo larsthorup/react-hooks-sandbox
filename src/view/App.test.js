@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, wait } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
 import { root } from '../root';
 
@@ -30,7 +30,7 @@ test('auth flow', async () => {
   fireEvent.click(getLoginButton());
 
   // Then: is logged in
-  await wait(getProfileButton);
+  await waitFor(getProfileButton);
   expect(getProfileButton()).toBeInTheDocument();
 
   // When: navigate to profile
