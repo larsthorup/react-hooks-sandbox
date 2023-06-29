@@ -22,9 +22,7 @@
     "build": "react-scripts build",
     "test:watch": "react-scripts test",
     "test": "react-scripts test --watchAll=false --coverage",
-    "eject": "react-scripts eject",
-    "coveralls": "coveralls < coverage/lcov.info",
-    "travis": "npm test && npm run coveralls"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
